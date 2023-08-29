@@ -1,0 +1,69 @@
+﻿@page "/"
+@using Models
+@using Util
+@inject PokemonClient client
+@using Microsoft.EntityFrameworkCore;
+
+
+
+
+
+<div class="container">
+    <div class="input-group">
+        <input type="text" @bind="searchText" />
+        <button @onclick="Search">Search</button>
+        <div class="pokemon-row">
+            @foreach (var p in filteredPokemon)
+            {
+                <div class="pokemon-card">
+                    <img src="@p.sprites.front_default" alt="">
+                    <h4 class="pokemon-name">@p.name</h4>
+                    <div class="type-row">
+                        @foreach (var type in p.types)
+                        {
+                            <span class="type-badge" style="background-color: @TypeColor.GetTypeColor(@type.type.name);">@type.type.name</span>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@code {
+    private string searchText = "";
+    Pokemon pokemon = new Pokemon();
+    List<Pokemon> pokemonList = new List<Pokemon>();
+
+
+    private List<Pokemon> filteredPokemon =>
+        string.IsNullOrWhiteSpace(searchText)
+            ? pokemonList
+            : pokemonList.Where(p => p.name.Contains(searchText, StringComparison.OrdinalIgnoreCase)).ToList();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        for (int i = 1; i < 1500; i++)
+        {
+            pokemonList.Add(await client.GetPokemon(i.ToString()));
+            StateHasChanged();
+        }
+        
+    }
+    // private async Task SavePokemon(string id)
+    // {
+
+    //      await client.SavePokemonToDatabase(id);
+
+    // }
+
+    private void Search()
+    {
+        StateHasChanged();
+    }
+}

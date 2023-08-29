@@ -1,0 +1,71 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+.container {
+    background-image: url(https://wallpapers.com/images/featured/pokemon-hd-fazqcs1tmwwte1ap.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.pokemon-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokemon-card {
+    border: 1px solid black;
+    width: 200px;
+    height: 250px;
+    padding: 10px;
+    background-color: lightgreen;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15);
+    margin-top: 10px;
+}
+
+img {
+    width: 80%;
+    height: 60%;
+}
+
+.type-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.pokemon-name {
+    text-transform: capitalize;
+    text-decoration: none;
+    color: #000;
+}
+
+.type-badge {
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #FFF;
+    text-transform: uppercase;
+    margin-right: 3px;
+}
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /*    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;*/
+}
